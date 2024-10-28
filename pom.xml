@@ -9,11 +9,11 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
-	<groupId>com.cwView</groupId>
-	<artifactId>CwView</artifactId>
+	<groupId>com.collectiveDunes</groupId>
+	<artifactId>CollectiveDunes</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>CwView</name>
-	<description>cwView is a web application designed to provide a seamless and synchronized video-watching experience for users. Built using Spring Boot, the application leverages a service-oriented architecture (SOA) to facilitate real-time interaction among multiple users.</description>
+	<name>CollectiveDunes</name>
+	<description>CollectiveDunes is a web application designed to provide a seamless and synchronized falling sand experience for users. Built using Spring Boot, the application leverages a service-oriented architecture (SOA) to facilitate real-time interaction among multiple users.</description>
 	<url/>
 	<licenses>
 		<license/>
@@ -39,10 +39,10 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-security</artifactId>
-		</dependency>
+		<!-- <dependency> -->
+		<!-- 	<groupId>org.springframework.boot</groupId> -->
+		<!-- 	<artifactId>spring-boot-starter-security</artifactId> -->
+		<!-- </dependency> -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
@@ -67,7 +67,6 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
-			<scope>runtime</scope>
 			<optional>true</optional>
 		</dependency>
 		<dependency>
@@ -90,11 +89,11 @@
 			<artifactId>reactor-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-test</artifactId>
-			<scope>test</scope>
-		</dependency>
+		<!-- <dependency> -->
+		<!-- 	<groupId>org.springframework.security</groupId> -->
+		<!-- 	<artifactId>spring-security-test</artifactId> -->
+		<!-- 	<scope>test</scope> -->
+		<!-- </dependency> -->
 	</dependencies>
 
 	<build>
@@ -113,7 +112,7 @@
 							<schemaPaths>
 								<param>src/main/resources/graphql-client</param>
 							</schemaPaths>
-							<packageName>com.cwView.codegen</packageName>
+							<packageName>com.collectiveDunes.codegen</packageName>
 							<addGeneratedAnnotation>true</addGeneratedAnnotation>
 						</configuration>
 					</execution>
@@ -140,6 +139,7 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+        <version>3.3.5</version>
 				<configuration>
 					<excludes>
 						<exclude>
