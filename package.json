@@ -1,7 +1,7 @@
 {
   "name": "cwview",
-  "version": "1.0.0",
-  "description": "<details>\r <summary><h2>Dependencies</h2></summary>",
+  "version": "0.0.1",
+  "description": "cwView is a web application designed to provide a seamless and synchronized video-watching experience for users",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
