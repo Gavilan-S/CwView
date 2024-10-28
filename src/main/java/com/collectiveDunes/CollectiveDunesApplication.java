@@ -1,13 +1,13 @@
-package com.cwView;
+package com.collectiveDunes;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class CwViewApplication {
+public class CollectiveDunesApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(CwViewApplication.class, args);
+		SpringApplication.run(CollectiveDunesApplication.class, args);
 	}
 
 }

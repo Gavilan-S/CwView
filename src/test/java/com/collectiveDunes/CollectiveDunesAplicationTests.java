@@ -1,10 +1,10 @@
-package com.cwView;
+package com.collectiveDunes;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class CwViewApplicationTests {
+class CollectiveDunesAplicationTests {
 
 	@Test
 	void contextLoads() {

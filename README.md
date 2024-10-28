@@ -4,7 +4,7 @@
 │   └── main
 │       ├── java
 │       │   └── com
-│       │       └── cwView
+│       │       └── collectiveDunes
 │       │           ├── config              // Configuración del servicio 
 │       │           ├── service             // Lógica de negocio (servicios)
 │       │           ├── model               // Modelos de datos (entidades)
