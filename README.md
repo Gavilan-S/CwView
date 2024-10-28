@@ -18,10 +18,11 @@
 │       │   └── application.yml              // Configuración en formato YAML (opcional)
 │       ├── static
 │       │   ├── js                           // Archivos JavaScript para la lógica del canvas
-│       │   │   └── sandbox.js               // Lógica de partículas de arena
+│       │   │   ├── tsDist
+|       |   |   └── tsSrc                    // Lógica de partículas de arena
 │       │   ├── css                          // Archivos CSS para estilos
 │       │   │   └── styles.css               // Estilos para la aplicación
-│       │   └── html                         // Archivos HTML
+│       ├── templates                         // Archivos HTML
 │       │       └── index.html               // Página principal
 ├── pom.xml                                  // Archivo de configuración de Maven
 └── README.md                                // Documentación del proyecto
