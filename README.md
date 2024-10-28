@@ -1,7 +1,5 @@
-# Dependencies
-
 <details>
-<summary>Click to expand</summary>
+<summary><span style="color:#D8CBA0; font-size: 1.5em;"><b>Dependencies</b></span></summary>
 
 1. **Spring Web**  
    Build web, including RESTful, applications using Spring MVC. Uses Apache Tomcat as the default embedded container.
