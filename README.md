@@ -1,3 +1,32 @@
+<h2>TODO</h2>
+<pre>
+├── src
+│   └── main
+│       ├── java
+│       │   └── com
+│       │       └── cwView
+│       │           ├── config              // Configuración del servicio 
+│       │           ├── service             // Lógica de negocio (servicios)
+│       │           ├── model               // Modelos de datos (entidades)
+│       │           ├── repository          // Interfaces para acceso a datos
+│       │           ├── dto                 // Objetos de transferencia de datos
+│       │           ├── exception           // Clases de excepción personalizadas
+│       │           ├── utils               // Utilidades generales
+│       │           └── websocket           // Manejo de WebSocket para sincronización
+│       ├── resources
+│       │   ├── application.properties       // Configuración del servicio
+│       │   └── application.yml              // Configuración en formato YAML (opcional)
+│       ├── static
+│       │   ├── js                           // Archivos JavaScript para la lógica del canvas
+│       │   │   └── sandbox.js               // Lógica de partículas de arena
+│       │   ├── css                          // Archivos CSS para estilos
+│       │   │   └── styles.css               // Estilos para la aplicación
+│       │   └── html                         // Archivos HTML
+│       │       └── index.html               // Página principal
+├── pom.xml                                  // Archivo de configuración de Maven
+└── README.md                                // Documentación del proyecto
+</pre>
+
 <details>
 <summary><h2>Dependencies</h2></summary>
 
