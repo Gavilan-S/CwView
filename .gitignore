@@ -1,10 +1,12 @@
 # commitlint for not mandatory commits only local
 .husky/
-node_modules/
 CHANGELOG.md
 commitlint.config.js
-package-lock.json
-package.json
+node_modules
+
+# ignore for ts on main
+tsconfig.json
+/src/main/resources/static/ts/tsSrc
 
 # Ignore Gradle project-specific cache directory
 .gradle
