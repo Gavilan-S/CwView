@@ -1,4 +1,44 @@
-<h2>TODO</h2>
+# CollectiveDunes
+
+## Requirements
+
+- <a href="https://docs.docker.com/get-docker/">Docker</a> (Version: 27.2.0)
+
+### Docker Images (Upload if you add new one)
+
+- `nginx:latest`: Used for the reverse proxy service.
+- `openjdk:23-jdk-slim`: Base image to run the Spring Boot application
+
+## Commands to Run 
+
+1. **Clone the Repository and Go to Project Source File**:
+
+   ```bash
+   git clone [https://github.com/username/project.git](https://github.com/Gvln-S/CollectiveDunes)
+   cd CollectiveDunes
+   ```
+
+2. **Run the Following Xommand to Build and Start the Containers:**:
+
+   ```bash
+   docker-compose up --build
+   ```
+
+3. **Stop the Containers**:
+
+   ```bash
+   docker-compose down
+   ```
+
+4. **ONLY IF YOU NEED - Access Container Console**
+
+   ```bash
+   docker exec -it container_name /bin/sh
+   ```
+
+<details>
+<summary><h2>TODO</h2></summary>
+
 <pre>
 ├── src
 │   └── main
@@ -26,6 +66,7 @@
 ├── pom.xml                                  // Archivo de configuración de Maven
 └── README.md                                // Documentación del proyecto
 </pre>
+</details>
 
 <details>
 <summary><h2>Dependencies</h2></summary>
