@@ -5,7 +5,7 @@ FROM openjdk:23-jdk-slim
 WORKDIR /app
 
 # projecto files goes to
-COPY target/CollectiveDunes-0.0.1-SNAPSHOT.jar CollectiveDunes.jar
+COPY target/CollectiveDunes-0.2.0-SNAPSHOT.jar CollectiveDunes.jar
 
 # port 
 EXPOSE 8080
