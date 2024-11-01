@@ -5,11 +5,11 @@ import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
 
 @Controller
-public class WebSocketControllerTest {
+public class WebSocketController {
 
     private final SimpMessagingTemplate messagingTemplate;
 
-    public WebSocketControllerTest(SimpMessagingTemplate messagingTemplate) {
+    public WebSocketController(SimpMessagingTemplate messagingTemplate) {
         this.messagingTemplate = messagingTemplate;
     }
 
