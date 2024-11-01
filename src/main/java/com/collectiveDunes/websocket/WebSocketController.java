@@ -1,4 +1,4 @@
-package com.collectiveDunes.websocket;
+package com.collectiveDunes.webSocket;
 
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
@@ -14,7 +14,7 @@ public class WebSocketController {
     }
 
     @MessageMapping("/mouse")
-    public void handleMouseCoordinates(MouseCoordinates coordinates) {
+    public void handleMouseCoordinates(Mouse coordinates) {
         messagingTemplate.convertAndSend("/topic/coordinates", coordinates);
     }
 }
