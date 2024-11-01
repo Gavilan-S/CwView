@@ -1,7 +1,3 @@
-# commitlint for not mandatory commits only local
-.husky/
-commitlint.config.js
-
 # Ignore Gradle project-specific cache directory
 .gradle
 
