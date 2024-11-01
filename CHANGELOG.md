@@ -1,5 +1,9 @@
-## 0.2.0 (2024-11-01)
+## <small>0.2.1 (2024-11-01)</small>
 
+* 0.1.0 ([e705835](https://github.com/Gvln-S/CollectiveDunes/commit/e705835))
+* 0.2.0 ([e14268c](https://github.com/Gvln-S/CollectiveDunes/commit/e14268c))
+* 0.2.1 ([82304d7](https://github.com/Gvln-S/CollectiveDunes/commit/82304d7))
+* Initial commit ([f03f468](https://github.com/Gvln-S/CollectiveDunes/commit/f03f468))
 * fix: add changelog and node_modules missing files ([d43a824](https://github.com/Gvln-S/CollectiveDunes/commit/d43a824))
 * fix: add new version to DockerFile ([f2e2d66](https://github.com/Gvln-S/CollectiveDunes/commit/f2e2d66))
 * fix: change to v0.0.1 ([3a51c7c](https://github.com/Gvln-S/CollectiveDunes/commit/3a51c7c))
@@ -11,9 +15,7 @@
 * fix: solve npm and other dependencies problems ([78b39a0](https://github.com/Gvln-S/CollectiveDunes/commit/78b39a0))
 * fix: solve ts problem with out mouse on js ([302917e](https://github.com/Gvln-S/CollectiveDunes/commit/302917e))
 * fix: solve ts problems ([13a00f0](https://github.com/Gvln-S/CollectiveDunes/commit/13a00f0))
-* 0.1.0 ([e705835](https://github.com/Gvln-S/CollectiveDunes/commit/e705835))
-* 0.2.0 ([e14268c](https://github.com/Gvln-S/CollectiveDunes/commit/e14268c))
-* Initial commit ([f03f468](https://github.com/Gvln-S/CollectiveDunes/commit/f03f468))
+* fix: solved, look for documentation ([7ee5bf2](https://github.com/Gvln-S/CollectiveDunes/commit/7ee5bf2))
 * docs: add complete information for actual dependencies ([8755e93](https://github.com/Gvln-S/CollectiveDunes/commit/8755e93))
 * docs: add dependecies to Readme file ([90ab4b1](https://github.com/Gvln-S/CollectiveDunes/commit/90ab4b1))
 * docs: add node_modules forder, only on develop ([2dc7d2b](https://github.com/Gvln-S/CollectiveDunes/commit/2dc7d2b))
