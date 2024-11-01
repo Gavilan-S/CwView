@@ -1,3 +1,21 @@
+import { Client } from '@stomp/stompjs';
+import * as SockJS from 'sockjs-client';
+const socket = new SockJS('http://localhost:8080/ws');
+const client = new Client({
+    webSocketFactory: () => socket,
+    debug: (str) => { console.log(str); },
+    onConnect: () => {
+        console.log('Conectado al servidor WebSocket');
+        
+        // Suscribirse al topic donde se envían las coordenadas
+        client.subscribe('/topic/coordinates', (message) => {
+            const otherUserCoords = JSON.parse(message.body);
+            // Aca se puede implementar lo de conectar para otros USERS LOL XD no c como pero aja 
+            drawOtherUserCoordinates(otherUserCoords);
+        });
+    },
+});
+
 var rows;
 var columns;
 var grid;
@@ -32,6 +50,14 @@ export function sandboxCreate(canvas) {
         canvas.addEventListener("mouseup", stopDrawingMouse);
     }
 }
+function drawOtherUserCoordinates(coords) {
+    const canvas = document.getElementById('yourCanvasId'); 
+    const context = canvas.getContext('2d');
+
+    // Dibuja un pequeño cuadrado en las coordenadas recibidas
+    context.fillStyle = "#FFF"; // Cambia el color si lo deseas
+    context.fillRect(coords.x, coords.y, 5, 5); // Dibuja un cuadrado de 5x5 píxeles
+}
 function create2DArray(rows, cols) {
     var array = [];
     for (var row = 0; row < rows; row++) {
@@ -61,6 +87,9 @@ function drawPixelMouse(event, canvas) {
     var mouseColumn = Math.floor(mouseX / cellSize);
     var matrixMouse = 5;
     var extent = Math.floor(matrixMouse / 2);
+    const coordinates = JSON.stringify({x:mouseX,y:mouseY});
+    console.log(coordinates);
+    client.publish({destination:'/app/mouse',body:coordinates});
     for (var mouseExtentX = -extent; mouseExtentX <= extent; mouseExtentX++) {
         for (var mouseExtentY = -extent; mouseExtentY <= extent; mouseExtentY++) {
             var randomChange = Math.random() < 0.75;
