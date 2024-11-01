@@ -1,8 +1,8 @@
 # commitlint for not mandatory commits only local
 .husky/
-CHANGELOG.md
 commitlint.config.js
 node_modules
+CHANGELOG.md
 
 # ignore for ts on main
 tsconfig.json
