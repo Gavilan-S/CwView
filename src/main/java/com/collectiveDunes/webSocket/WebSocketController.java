@@ -8,11 +8,9 @@ import org.springframework.stereotype.Controller;
 public class WebSocketController {
 
   @MessageMapping("/message")
-  @SendTo("/topic/response")
-  public String handleMessage(String message){
-    System.out.println("Mensaje de TypeScript: " + message);
-    return "Mensaje recibido en el servidor: " + message;
+  @SendTo("/topic/messages")
+  public String processMessage(String message) {
+    System.out.println("Mensaje recibido en Java: " + message);
+    return "Mensaje procesado y recibido correctamente: " + message;
   }
-
-  
 }

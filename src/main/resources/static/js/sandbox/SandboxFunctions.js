@@ -46,9 +46,13 @@ function create2DArray(rows, cols) {
 }
 
 function sandboxSetup() {
-  rows = Math.floor(canvasHeight / cellSize);
-  columns = Math.floor(canvasWidth / cellSize);
+  rows = Math.floor(canvasHeight/cellSize);
+  columns = Math.floor(canvasWidth/cellSize);
   grid = create2DArray(rows, columns);
+}
+
+function stopDrawingMouse() {
+  mouseAction = false;
 }
 
 function startDrawingMouse(event, canvas) {
@@ -56,6 +60,7 @@ function startDrawingMouse(event, canvas) {
   drawPixelMouse(event, canvas);
 }
 
+// TODO: solve corners problem
 function drawPixelMouse(event, canvas) {
   if (!mouseAction)
     return;
@@ -83,10 +88,6 @@ function drawPixelMouse(event, canvas) {
       }
     }
   }
-}
-
-function stopDrawingMouse() {
-  mouseAction = false;
 }
 
 function sandboxDraw(context) {
