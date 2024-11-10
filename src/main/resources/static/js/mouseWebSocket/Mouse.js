@@ -10,7 +10,7 @@ export function connectionWebSocket() {
 
     // subscribe to listen response
     stompClient.subscribe('/topic/messages', function(response) {
-      console.log('Got the answer:', response.body);
+      console.log('Answer from the server:', response.body);
     });
   });
 }
@@ -23,7 +23,7 @@ export function sendCoordinates(event) {
 
   if (stompClient && stompClient.connected) {
     const mensaje = {
-      contenido: `X=${x}, Y=${y}`
+      x, y
     };
     stompClient.send("/coordinates/message", {}, JSON.stringify(mensaje));
   }

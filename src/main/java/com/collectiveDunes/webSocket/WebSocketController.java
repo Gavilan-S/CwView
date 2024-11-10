@@ -10,7 +10,7 @@ public class WebSocketController {
   @MessageMapping("/message")
   @SendTo("/topic/messages")
   public String processMessage(String message) {
-    System.out.println("Mensaje recibido en Java: " + message);
-    return "Mensaje procesado y recibido correctamente: " + message;
+    System.out.println("Java: " + message);
+    return message;
   }
 }
