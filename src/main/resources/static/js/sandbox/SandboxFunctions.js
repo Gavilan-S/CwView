@@ -2,20 +2,13 @@ var rows;
 var columns;
 var grid;
 var cellSize = 5;
-var mouseAction = false;
+var isDrawing = false;
 var canvasWidth;
 var canvasHeight;
+
 var colorPalette = [
-  "#FF6F61",
-  "#FFB347",
-  "#FFD700",
-  "#4CAF50",
-  "#2196F3",
-  "#FF5722",
-  "#9C27B0",
-  "#673AB7",
-  "#3F51B5",
-  "#00BCD4"
+  "#FF6F61", "#FFB347", "#FFD700", "#4CAF50", "#2196F3",
+  "#FF5722", "#9C27B0", "#673AB7", "#3F51B5", "#00BCD4"
 ];
 var colorIndex = 0;
 var colorChangeThreshold = 2000;
@@ -29,21 +22,88 @@ export function sandboxCreate(canvas) {
     sandboxSetup();
     sandboxAnimate(context);
 
-    canvas.addEventListener("mousedown", function (event) { 
-      startDrawingMouse(event, canvas);
-      if (typeof sendCoordinates === 'function') {
-        sendCoordinates(event);
+    // Mouse events
+    canvas.addEventListener("mousedown", (event) => {
+      event.preventDefault();
+      isDrawing = true;
+      handleDrawEvent(event, canvas);
+    });
+
+    canvas.addEventListener("mousemove", (event) => {
+      event.preventDefault();
+      if (isDrawing) {
+        handleDrawEvent(event, canvas);
       }
     });
 
-    canvas.addEventListener("mousemove", function (event) { 
-      drawPixelMouse(event, canvas);
-      if (mouseAction && typeof sendCoordinates === 'function') {
-        sendCoordinates(event);
-      }
+    canvas.addEventListener("mouseup", (event) => {
+      event.preventDefault();
+      isDrawing = false;
     });
 
-    canvas.addEventListener("mouseup", stopDrawingMouse);
+    canvas.addEventListener("mouseleave", (event) => {
+      event.preventDefault();
+      isDrawing = false;
+    });
+
+    // Touch events
+    canvas.addEventListener("touchstart", (event) => {
+      event.preventDefault();
+      isDrawing = true;
+      handleTouchEvent(event, canvas);
+    }, { passive: false });
+
+    canvas.addEventListener("touchmove", (event) => {
+      event.preventDefault();
+      if (isDrawing) {
+        handleTouchEvent(event, canvas);
+      }
+    }, { passive: false });
+
+    canvas.addEventListener("touchend", (event) => {
+      event.preventDefault();
+      isDrawing = false;
+    }, { passive: false });
+
+    canvas.addEventListener("touchcancel", (event) => {
+      event.preventDefault();
+      isDrawing = false;
+    }, { passive: false });
+  }
+}
+
+function handleDrawEvent(event, canvas) {
+  const rect = canvas.getBoundingClientRect();
+  const x = event.clientX - rect.left;
+  const y = event.clientY - rect.top;
+  
+  drawPixel(x, y, canvas);
+  
+  // Send coordinates through WebSocket
+  if (typeof window.sendCoordinates === 'function') {
+    window.sendCoordinates({
+      clientX: event.clientX,
+      clientY: event.clientY,
+      target: canvas
+    });
+  }
+}
+
+function handleTouchEvent(event, canvas) {
+  const touch = event.touches[0];
+  const rect = canvas.getBoundingClientRect();
+  const x = touch.clientX - rect.left;
+  const y = touch.clientY - rect.top;
+  
+  drawPixel(x, y, canvas);
+  
+  // Send coordinates through WebSocket
+  if (typeof window.sendCoordinates === 'function') {
+    window.sendCoordinates({
+      clientX: touch.clientX,
+      clientY: touch.clientY,
+      target: canvas
+    });
   }
 }
 
@@ -64,26 +124,12 @@ function sandboxSetup() {
   grid = create2DArray(rows, columns);
 }
 
-function stopDrawingMouse() {
-  mouseAction = false;
-}
-
-function startDrawingMouse(event, canvas) {
-  mouseAction = true;
-  drawPixelMouse(event, canvas);
-}
-
-// TODO: solve corners problem
-function drawPixelMouse(event, canvas) {
-  if (!mouseAction) return;
-
-  var rect = canvas.getBoundingClientRect();
-  var mouseX = event.clientX - rect.left;
-  var mouseY = event.clientY - rect.top;
-  var mouseRow = Math.floor(mouseY / cellSize);
-  var mouseColumn = Math.floor(mouseX / cellSize);
+function drawPixel(x, y) {
+  var mouseRow = Math.floor(y / cellSize);
+  var mouseColumn = Math.floor(x / cellSize);
   var matrixMouse = 5;
   var extent = Math.floor(matrixMouse / 2);
+  
   for (var mouseExtentX = -extent; mouseExtentX <= extent; mouseExtentX++) {
     for (var mouseExtentY = -extent; mouseExtentY <= extent; mouseExtentY++) {
       var randomChange = Math.random() < 0.75;
@@ -161,15 +207,6 @@ export function simulateClick(coordinates) {
   const canvas = document.getElementById("sandboxCanvas");
   if (!canvas) return;
   
-  const rect = canvas.getBoundingClientRect();
-  const [rawX, rawY] = coordinates.split(",").map(Number);
-  
-  const simulatedEvent = {
-    clientX: rawX + rect.left,
-    clientY: rawY + rect.top
-  };
-  
-  mouseAction = true;
-  drawPixelMouse(simulatedEvent, canvas);
-  mouseAction = false;
+  const [x, y] = coordinates.split(",").map(Number);
+  drawPixel(x, y);
 }
