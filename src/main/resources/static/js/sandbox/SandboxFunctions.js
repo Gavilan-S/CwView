@@ -28,8 +28,21 @@ export function sandboxCreate(canvas) {
   if (context) {
     sandboxSetup();
     sandboxAnimate(context);
-    canvas.addEventListener("mousedown", function (event) { return startDrawingMouse(event, canvas); });
-    canvas.addEventListener("mousemove", function (event) { return drawPixelMouse(event, canvas); });
+
+    canvas.addEventListener("mousedown", function (event) { 
+      startDrawingMouse(event, canvas);
+      if (typeof sendCoordinates === 'function') {
+        sendCoordinates(event);
+      }
+    });
+
+    canvas.addEventListener("mousemove", function (event) { 
+      drawPixelMouse(event, canvas);
+      if (mouseAction && typeof sendCoordinates === 'function') {
+        sendCoordinates(event);
+      }
+    });
+
     canvas.addEventListener("mouseup", stopDrawingMouse);
   }
 }
@@ -62,8 +75,8 @@ function startDrawingMouse(event, canvas) {
 
 // TODO: solve corners problem
 function drawPixelMouse(event, canvas) {
-  if (!mouseAction)
-    return;
+  if (!mouseAction) return;
+
   var rect = canvas.getBoundingClientRect();
   var mouseX = event.clientX - rect.left;
   var mouseY = event.clientY - rect.top;
@@ -142,4 +155,21 @@ function sandboxAnimate(context) {
     requestAnimationFrame(animate);
   }
   animate();
+}
+
+export function simulateClick(coordinates) {
+  const canvas = document.getElementById("sandboxCanvas");
+  if (!canvas) return;
+  
+  const rect = canvas.getBoundingClientRect();
+  const [rawX, rawY] = coordinates.split(",").map(Number);
+  
+  const simulatedEvent = {
+    clientX: rawX + rect.left,
+    clientY: rawY + rect.top
+  };
+  
+  mouseAction = true;
+  drawPixelMouse(simulatedEvent, canvas);
+  mouseAction = false;
 }
