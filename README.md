@@ -2,7 +2,7 @@
 
 ## Requirements
 
-- <a href="https://docs.docker.com/get-docker/">Docker</a> (Version: 27.2.0)
+- <a href="https://docs.docker.com/get-docker/">Docker</a> (Version: 27.2.0 or latest)
 
 ### Docker Images (Upload if you add new one)
 
@@ -14,7 +14,7 @@
 1. **Clone the Repository and Go to Project Source File**:
 
    ```bash
-   git clone [https://github.com/username/project.git](https://github.com/Gvln-S/CollectiveDunes)
+   git clone (https://github.com/Gvln-S/CollectiveDunes)
    cd CollectiveDunes
    ```
 
@@ -33,8 +33,14 @@
 4. **ONLY IF YOU NEED - Access Container Console**
 
    ```bash
-   docker exec -it container_name /bin/sh
+   docker exec -it collectivedune-spring-boot-app sh
    ```
+   or
+
+   ```bash
+   docker exec -it nginx sh
+   ```
+
 
 <details>
 <summary><h2>TODO</h2></summary>
