@@ -14,7 +14,14 @@ var colorIndex = 0;
 var colorChangeThreshold = 2000;
 var squareCount = 0;
 
+var canvasWidthPercentage = 0.6; 
+var canvasHeightPercentage = 0.8;
+
+var borderThickness = 3;
+
 export function sandboxCreate(canvas) {
+  resizeCanvas(canvas);
+
   var context = canvas.getContext("2d");
   canvasWidth = canvas.width;
   canvasHeight = canvas.height;
@@ -70,6 +77,7 @@ export function sandboxCreate(canvas) {
       isDrawing = false;
     }, { passive: false });
   }
+  window.addEventListener("resize", () => resizeCanvas(canvas));
 }
 
 function handleDrawEvent(event, canvas) {
@@ -161,43 +169,71 @@ function sandboxDraw(context) {
 
 function sandboxUpdate() {
   var nextGrid = create2DArray(rows, columns);
+
   for (var row = 0; row < rows; row++) {
     for (var column = 0; column < columns; column++) {
       var actualState = grid[row][column];
+
       if (actualState !== 0) {
         if (row < rows - 1) {
           var belowCell = grid[row + 1][column];
-          var belowCellLeft = grid[row + 1][column - 1] || 0;
-          var belowCellRight = grid[row + 1][column + 1] || 0;
+          var belowCellLeft = column > 0 ? grid[row + 1][column - 1] : 1;
+          var belowCellRight = column < columns - 1 ? grid[row + 1][column + 1] : 1;
+
           if (belowCell === 0) {
             nextGrid[row + 1][column] = actualState;
-          }
-          else {
+          } else {
             var randomSide = Math.random() < 0.5;
             if (randomSide && belowCellLeft === 0) {
               nextGrid[row + 1][column - 1] = actualState;
-            }
-            else if (!randomSide && belowCellRight === 0) {
+            } else if (!randomSide && belowCellRight === 0) {
               nextGrid[row + 1][column + 1] = actualState;
-            }
-            else {
+            } else {
               nextGrid[row][column] = actualState;
             }
           }
-        }
-        else {
+        } else {
           nextGrid[row][column] = actualState;
         }
       }
     }
   }
+
   grid = nextGrid;
+}
+
+function resizeCanvas(canvas) {
+  canvas.width = window.innerWidth * canvasWidthPercentage;
+  canvas.height = window.innerHeight * canvasHeightPercentage;
+
+  canvasWidth = canvas.width;
+  canvasHeight = canvas.height;
+
+  rows = Math.floor(canvasHeight / cellSize);
+  columns = Math.floor(canvasWidth / cellSize);
+
+  grid = create2DArray(rows, columns);
+
+  sandboxSetup();
+  sandboxDraw(canvas.getContext("2d"));
+}
+
+function drawBorder(context) {
+  context.strokeStyle = "#FFF";
+  context.lineWidth = borderThickness;
+  context.strokeRect(
+    borderThickness / 2, 
+    borderThickness / 2, 
+    canvasWidth - borderThickness, 
+    canvasHeight - borderThickness
+  );
 }
 
 function sandboxAnimate(context) {
   function animate() {
     sandboxUpdate();
     sandboxDraw(context);
+    drawBorder(context);
     requestAnimationFrame(animate);
   }
   animate();

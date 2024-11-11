@@ -1,8 +1,88 @@
 * {
   padding: 0;
   margin: 0;
+
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 body {
+  width: 100vw;
+  height: 100vh;
   background: #000;
+
+  display: flex;
+  justify-content: space-evenly;
+
+  padding: 5% 0;
+  overflow: hidden;
+
+}
+
+section.usersSection {
+  align-items: stretch;
+
+  width: 30vw;
+}
+
+section.usersSection > article > div.players {
+  height: 90px;
+
+  border: 3px #fff solid;
+}
+
+section.usersSection span {
+  position: absolute;
+  bottom: 40.5%;
+
+  display: grid;
+  grid-template-rows: repeat(6, 1fr);
+  grid-template-columns: repeat(6, 1fr);
+
+  height: 250px;
+}
+
+section.usersSection span > img {
+  width: 30px;
+}
+
+section.usersSection span > img:first-child {
+  grid-area: 5/1/5/1;
+}
+
+section.usersSection span > img:nth-child(2) {
+  grid-area: 6/1/6/1;
+}
+section.usersSection span > img:nth-child(3) {
+  grid-area: 5/5/5/5;
+}
+
+section.usersSection span > img:nth-child(4) {
+  grid-area: 6/6/6/6;
+}
+
+section.usersSection span > img:last-child {
+  grid-area: 1/3/1/3;
+}
+
+section.usersSection > article > div.goBack {
+  height: 90px;
+  width: 29.5vw;
+
+  border: 3px #fff solid;
+
+  position: absolute;
+  bottom: 30%;
+
+  width: 29.5vw;
+  align-content: center;
+
+  color: #FFF;
+  text-align: center;
+  font-size: 25px;
+}
+
+@media (max-width: 600px) {
+ section.usersSection {
+   display: none;
+ } 
 }
