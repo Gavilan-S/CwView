@@ -14,20 +14,20 @@
 1. **Clone the Repository and Go to Project Source File**:
 
    ```bash
-   git clone (https://github.com/Gvln-S/CollectiveDunes)
+   git clone https://github.com/Gvln-S/CollectiveDunes
    cd CollectiveDunes
    ```
 
-2. **Run the Following Xommand to Build and Start the Containers:**:
+2. **Run the Following Command to Build and Start the Containers:**:
 
    ```bash
-   docker-compose up --build
+   docker-compose up --build --detach
    ```
 
 3. **Stop the Containers**:
 
    ```bash
-   docker-compose down
+   docker-compose down --rmi all
    ```
 
 4. **ONLY IF YOU NEED - Access Container Console**

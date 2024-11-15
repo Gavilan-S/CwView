@@ -1,13 +1,3 @@
-# ignore for ts on main and CHANGELOG only on dev
-node_modules
-package.json
-package-lock.json
-tsconfig.json
-/src/main/resources/static/ts/tsSrc
-
-CHANGELOG.md
-
-
 # Ignore Gradle project-specific cache directory
 .gradle
 
