@@ -8,6 +8,7 @@ services:
       - "8080:8080"
     networks:
       - webnet
+   
 
   nginx:
     image: nginx:latest
@@ -21,7 +22,19 @@ services:
     networks:
       - webnet
 
+  mysql-db:
+    image: mysql:8.0
+    container_name: mysql-db
+    environment:
+      MYSQL_ROOT_PASSWORD: 123
+      MYSQL_DATABASE: collective_dunes
+      MYSQL_USER: user
+      MYSQL_PASSWORD: user_password
+    ports:
+      - "3306:3306"
+    networks:
+      - webnet
+
 networks:
   webnet:
     driver: bridge
-
