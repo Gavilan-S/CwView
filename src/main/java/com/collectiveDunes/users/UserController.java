@@ -5,14 +5,14 @@ import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/users")
 public class UserController {
 
     @Autowired
     private UsersRepository userRepository;
 
-    @PostMapping
-    public String addUser(@RequestParam String username, @RequestParam String password) {
+    @PostMapping("/insert")
+    public String addUser(String username, @RequestParam String password) {
         if (userRepository.findByUsername(username) != null) {
             return "Error: Username already exists";
         }
@@ -23,14 +23,8 @@ public class UserController {
         return "User added successfully";
     }
 
-    
-    @GetMapping
-    public Iterable<User> getAllUsers() {
-        return userRepository.findAll();
-    }
-
+    @GetMapping("/findAll")
+    public Iterable<User> getAllUsers() { return userRepository.findAll(); }
     @GetMapping("/{id}")
-    public User getUserById(@PathVariable Long id) {
-        return userRepository.findById(id).orElse(null);
-    }
+    public User getUserById(@PathVariable Long id) { return userRepository.findById(id).orElse(null); }
 }

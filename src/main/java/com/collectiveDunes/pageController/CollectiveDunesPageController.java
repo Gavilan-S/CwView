@@ -10,9 +10,9 @@ public class CollectiveDunesPageController {
   public String showPage() {
     return "portal";
   }
-  @RequestMapping("/index")
+  @RequestMapping("/game")
   public String showIndex(){
-    return "index";
+    return "game";
   }
   @RequestMapping("/login")
   public String showLogin(){

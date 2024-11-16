@@ -1,4 +1,20 @@
 services:
+  mysql-db:
+    image: mysql:8.0
+    container_name: mysql-db
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: collective_dunes
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p$$MYSQL_ROOT_PASSWORD"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    ports:
+      - "3306:3306"
+    networks:
+      - webnet
+
   spring-boot-app:
     build:
       context: .
@@ -8,7 +24,15 @@ services:
       - "8080:8080"
     networks:
       - webnet
-   
+    depends_on:
+      mysql-db:
+        condition: service_healthy
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/collective_dunes?useSSL=false&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: rootpassword
+      SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT: org.hibernate.dialect.MySQL8Dialect
+      SPRING_JPA_HIBERNATE_DDL-AUTO: update
 
   nginx:
     image: nginx:latest
@@ -22,19 +46,7 @@ services:
     networks:
       - webnet
 
-  mysql-db:
-    image: mysql:8.0
-    container_name: mysql-db
-    environment:
-      MYSQL_ROOT_PASSWORD: 123
-      MYSQL_DATABASE: collective_dunes
-      MYSQL_USER: user
-      MYSQL_PASSWORD: user_password
-    ports:
-      - "3306:3306"
-    networks:
-      - webnet
-
 networks:
   webnet:
     driver: bridge
+
