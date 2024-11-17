@@ -1,4 +1,4 @@
-import { simulateClick } from "../sandbox/SandboxFunctions.js";
+import { simulateClick } from "../sandbox/Sandbox.js";
 
 let stompClient = null;
 let lastSentTimestamp = 0;
