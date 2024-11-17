@@ -8,15 +8,15 @@ public class CollectiveDunesPageController {
 
   @RequestMapping("/")
   public String showPage() {
-    return "portal";
+    return "login";
   }
   @RequestMapping("/game")
   public String showIndex(){
     return "game";
   }
-  @RequestMapping("/login")
-  public String showLogin(){
-    return "login";
+  @RequestMapping("/portal")
+  public String showPortal(){
+    return "portal";
   }
   @RequestMapping("/register")
   public String showRegister(){

@@ -7,7 +7,7 @@
 </head>
 <body>
     <h2>Registro de Usuario</h2>
-    <form action="/auth/register" method="post">
+    <form action="/users/insert" method="post">
         <label for="username">Nombre de usuario:</label>
         <input type="text" id="username" name="username" required>
         <br>
@@ -16,11 +16,8 @@
         <input type="password" id="password" name="password" required>
         <br>
 
-        <label for="email">Correo electrónico:</label>
-        <input type="email" id="email" name="email" required>
-        <br>
-
         <button type="submit">Registrar</button>
+
     </form>
 </body>
 </html>
