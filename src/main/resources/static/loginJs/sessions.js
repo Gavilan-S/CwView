@@ -23,11 +23,17 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     };
 
+    function redirectToGame() {
+        console.log("Redirection to game triggered"); 
+        window.location.href = '/game';
+    }
+    
+
     window.joinSession = function(sessionName, sessionPassword) {
         const enteredPassword = prompt(`Ingresa la contraseña para la sesión "${sessionName}":`);
 
         if (enteredPassword === sessionPassword) {
-            redirectToIndex();
+            redirectToGame();
         } else {
             alert("Contraseña incorrecta. Intenta de nuevo.");
         }
