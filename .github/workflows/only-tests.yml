@@ -43,9 +43,12 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '22'
-
+    
       - name: Install dependencies
         run: npm install
 
-      - name: Run Jest tests
+      - name: Set executable permission for jest
+        run: chmod +x ./node_modules/.bin/jest
+
+      - name: Run tests
         run: npm test
