@@ -19,12 +19,12 @@ jobs:
         uses: actions/setup-java@v3
         with:
           java-version: '23'
+          distribution: 'zulu'
 
       - name: Set up Maven
         uses: actions/setup-java@v3
         with:
           java-version: '23'
-          distribution: 'zulu'
         
       - name: Build and run backend tests
         run: |
