@@ -1,4 +1,4 @@
-package com.collectiveDunes.users;
+package com.collectiveDunes.user;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import jakarta.annotation.PostConstruct;
+
 import org.springframework.stereotype.Controller;
 
 @Controller
@@ -29,14 +32,18 @@ public class UserController {
       return new ModelAndView("redirect:/register", response);
     }
 
-    User user = new User();
-    user.setUsername(username);
-    user.setPassword(password);
+    User user = new User(username, password);
     userRepository.save(user);
 
     response.put("status", "success");
     response.put("message", "Registration successful");
     return new ModelAndView("redirect:/portal", response);
+  }
+
+  @PostConstruct
+  public void init() {
+    User userTest = new User("userTest", "userPasswordTest");
+    addUser(userTest.getName(), userTest.getPassword());
   }
 
   @PostMapping("/login")

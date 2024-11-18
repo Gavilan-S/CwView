@@ -1,4 +1,4 @@
-package com.collectiveDunes.users;
+package com.collectiveDunes.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,7 +10,7 @@ public class UserService {
   private UsersRepository userRepository;
 
   public boolean registerUser(User user) {
-    if (userRepository.existsByUsername(user.getUsername())) {
+    if (userRepository.existsByUsername(user.getName())) {
       return false;
     }
     userRepository.save(user);

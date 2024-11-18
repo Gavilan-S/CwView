@@ -1,4 +1,4 @@
-package com.collectiveDunes.users;
+package com.collectiveDunes.user;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
