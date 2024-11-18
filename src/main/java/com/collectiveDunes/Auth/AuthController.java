@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.collectiveDunes.user.User;
 import com.collectiveDunes.user.UserService;
 
-
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
@@ -32,6 +31,7 @@ public class AuthController {
   @PostMapping("/register")
   public String registerUser(@RequestBody User user) {
     boolean isRegistered = userService.registerUser(user);
+
     if (isRegistered) {
       return "redirect:/portal";  
     } else {

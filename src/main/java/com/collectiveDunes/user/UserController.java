@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
 import jakarta.annotation.PostConstruct;
 
 @Controller
@@ -30,7 +31,9 @@ public class UserController {
       return new ModelAndView("redirect:/register", response);
     }
 
-    User user = new User(username, password);
+    User user = new User();
+    user.setUsername(username);
+    user.setPassword(password);
     userRepository.save(user);
 
     response.put("status", "success");
@@ -40,8 +43,10 @@ public class UserController {
 
   @PostConstruct
   public void init() {
-    User userTest = new User("userTest", "userPasswordTest");
-    addUser(userTest.getName(), userTest.getPassword());
+    User user = new User();
+    user.setUsername("userTest");
+    user.setPassword("123");
+    userRepository.save(user);
   }
 
   @PostMapping("/login")

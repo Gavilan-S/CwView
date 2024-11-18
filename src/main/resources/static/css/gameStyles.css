@@ -35,21 +35,3 @@ button:hover {
   background-color: #fff;
   color: #000;
 }
-
-section.usersSection {
-  align-items: stretch;
-
-  width: 30vw;
-}
-
-section.usersSection > article > div.players {
-  height: 90px;
-
-  border: 3px #fff solid;
-}
-
-@media (max-width: 600px) {
- section.usersSection {
-   display: none;
- } 
-}

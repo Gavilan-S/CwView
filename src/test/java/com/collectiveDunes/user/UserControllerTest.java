@@ -29,7 +29,10 @@ public class UserControllerTest {
     public void testAddUser_UserAlreadyExists() {
         String username = "existingUser";
         String password = "password";
-        when(userRepository.findByUsername(username)).thenReturn(new User(username, password));
+        User user = new User();
+        user.setUsername(username);
+        user.setPassword(password);
+        when(userRepository.findByUsername(username)).thenReturn(new User());
 
         ModelAndView result = userController.addUser(username, password);
 
@@ -70,7 +73,9 @@ public class UserControllerTest {
     public void testLoginUser_InvalidPassword() {
         String username = "validUser";
         String password = "wrongPassword";
-        User user = new User(username, "correctPassword");
+        User user = new User();
+        user.setUsername(username);
+        user.setPassword("correctPassword");
         when(userRepository.findByUsername(username)).thenReturn(user);
 
         ModelAndView result = userController.loginUser(username, password);
@@ -84,7 +89,9 @@ public class UserControllerTest {
     public void testLoginUser_Success() {
         String username = "validUser";
         String password = "password";
-        User user = new User(username, password);
+        User user = new User();
+        user.setUsername(username);
+        user.setPassword(password);
         when(userRepository.findByUsername(username)).thenReturn(user);
 
         ModelAndView result = userController.loginUser(username, password);
@@ -108,7 +115,9 @@ public class UserControllerTest {
     @Test
     public void testGetUserById_UserFound() {
         Long userId = 1L;
-        User user = new User("testUser", "password");
+        User user = new User();
+        user.setUsername("testUser");
+        user.setPassword("password");
         when(userRepository.findById(userId)).thenReturn(Optional.of(user));
 
         User result = userController.getUserById(userId);
