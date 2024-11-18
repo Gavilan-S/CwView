@@ -13,8 +13,10 @@ public class WebSocketController {
   @MessageMapping("/message")
   @SendTo("/topic/messages")
   public String processMessage(String coordinates) {
+    if (!coordinates.contains(",")) {
+      throw new IllegalArgumentException(coordinates + ": no valid coordinate");
+    }
     mouse = new Mouse(coordinates.split(",")[0], coordinates.split(",")[1]);
-    System.out.println(mouse.getMouseX()+","+mouse.getMouseY()); 
     return (mouse.getMouseX() + "," + mouse.getMouseY());
   }
 }

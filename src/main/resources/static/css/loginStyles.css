@@ -1,0 +1,87 @@
+body {
+    font-family: Arial, sans-serif;
+    background: radial-gradient(circle at 43.44% 87.19%, #e78d2a 0, #ec812b 10%, #ef732e 20%, #f26432 30%, #f35237 40%, #f23c3c 50%, #f01c43 60%, #ee004b 70%, #ea0054 80%, #e5005f 90%, #de006c 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.login-container {
+    background-color: #000;
+    padding: 30px;
+    border-radius: 8px;
+    color: #ffff;
+    border: 2px solid white;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+h2 {
+    color: #ffff;
+    margin-bottom: 25px; 
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    text-align: left;
+    font-weight: bold;
+}
+
+input[type="text"], input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0 20px;
+    background-color: #000;
+    color: #ffff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    border: #ffff;
+    border: 2px solid white; 
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+button:hover {
+    background-color: #ffff;
+    color: #000;
+}
+
+.register-link {
+    display: block;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.register-link a {
+    color: white;
+    text-decoration: none;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
+    color:#ddd;
+}
+
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 10px;
+}

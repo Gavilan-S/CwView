@@ -10,5 +10,5 @@ public class Mouse {
   }
 
   public String getMouseX() { return mouseX; }
-  public String getMouseY() {  return mouseY; }
+  public String getMouseY() { return mouseY; }
 }

@@ -7,7 +7,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class CollectiveDunesPageController {
 
   @RequestMapping("/")
-  public String showPage() {
-    return "index";
-  }
+  public String showPage() { return "login"; }
+
+  @RequestMapping("/game")
+  public String showIndex(){ return "game"; }
+
+  @RequestMapping("/portal")
+  public String showPortal(){ return "portal"; }
+
+  @RequestMapping("/register")
+  public String showRegister(){ return "register"; }
 }
