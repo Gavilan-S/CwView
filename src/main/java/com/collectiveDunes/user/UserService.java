@@ -10,7 +10,7 @@ public class UserService {
   private UsersRepository userRepository;
 
   public boolean registerUser(User user) {
-    if (userRepository.existsByUsername(user.getName())) {
+    if (userRepository.existsByUsername(user.getUsername())) {
       return false;
     }
     userRepository.save(user);

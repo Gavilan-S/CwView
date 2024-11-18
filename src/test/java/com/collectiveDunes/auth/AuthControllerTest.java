@@ -28,18 +28,20 @@ public class AuthControllerTest {
     @Test
     public void testShowRegisterPage() {
         String result = authController.showRegisterPage();
-        assertEquals("redirect:/register", result);
+        assertEquals("register", result);
     }
 
     @Test
     public void testShowLoginPage() {
         String result = authController.showLoginPage();
-        assertEquals("redirect:/", result);
+        assertEquals("login", result);
     }
 
     @Test
     public void testRegisterUser_Success() {
-        User user = new User("newUser", "password");
+        User user = new User();
+        user.setUsername("newUser");
+        user.setPassword("password");
         when(userService.registerUser(user)).thenReturn(true);
 
         String result = authController.registerUser(user);
@@ -50,18 +52,22 @@ public class AuthControllerTest {
 
     @Test
     public void testRegisterUser_Failure() {
-        User user = new User("existingUser", "password");
+        User user = new User();
+        user.setUsername("existingUser");
+        user.setPassword("password");
         when(userService.registerUser(user)).thenReturn(false);
 
         String result = authController.registerUser(user);
-        assertEquals("redirect:/register", result);
+        assertEquals("register", result);
 
         verify(userService).registerUser(user);
     }
 
     @Test
     public void testLoginUser_Success() {
-        User user = new User("validUser", "password");
+        User user = new User();
+        user.setUsername("validUser");
+        user.setPassword("password");
         when(userService.loginUser("validUser", "password")).thenReturn(user);
 
         String result = authController.loginUser("validUser", "password");
@@ -75,7 +81,7 @@ public class AuthControllerTest {
         when(userService.loginUser("invalidUser", "wrongPassword")).thenReturn(null);
 
         String result = authController.loginUser("invalidUser", "wrongPassword");
-        assertEquals("redirect:/", result);
+        assertEquals("login", result);
 
         verify(userService).loginUser("invalidUser", "wrongPassword");
     }

@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import jakarta.annotation.PostConstruct;
 
 @Controller
 @RequestMapping("/users")
@@ -20,7 +19,7 @@ public class UserController {
   @Autowired
   private UsersRepository userRepository;
 
-  @PostMapping("insert")
+  @PostMapping("/insert")
   public ModelAndView addUser(@RequestParam String username, @RequestParam String password) {
     Map<String, String> response = new HashMap<>();
 
@@ -30,18 +29,14 @@ public class UserController {
       return new ModelAndView("redirect:/register", response);
     }
 
-    User user = new User(username, password);
+    User user = new User();
+    user.setUsername(username);
+    user.setPassword(password);
     userRepository.save(user);
 
     response.put("status", "success");
     response.put("message", "Registration successful");
     return new ModelAndView("redirect:/portal", response);
-  }
-
-  @PostConstruct
-  public void init() {
-    User userTest = new User("userTest", "userPasswordTest");
-    addUser(userTest.getName(), userTest.getPassword());
   }
 
   @PostMapping("/login")
@@ -52,13 +47,13 @@ public class UserController {
     if (user == null) {
       response.put("status", "error");
       response.put("message", "Username does not exist");
-      return new ModelAndView("redirect:/", response);
+      return new ModelAndView("redirect:/login", response);
     }
 
     if (!user.getPassword().equals(password)) {
       response.put("status", "error");
       response.put("message", "Invalid password");
-      return new ModelAndView("redirect:/", response);
+      return new ModelAndView("redirect:/login", response);
     }
 
     response.put("status", "success");

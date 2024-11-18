@@ -20,31 +20,32 @@ public class AuthController {
 
   @GetMapping("/register")
   public String showRegisterPage() {
-    return "redirect:/register";
+    return "register";
   }
 
-  @GetMapping("/")
+  @GetMapping("/login")
   public String showLoginPage() {
-    return "redirect:/";
+    return "login";
   }
 
   @PostMapping("/register")
   public String registerUser(@RequestBody User user) {
     boolean isRegistered = userService.registerUser(user);
+
     if (isRegistered) {
       return "redirect:/portal";  
     } else {
-      return "redirect:/register";  
+      return "register";  
     }
   }
 
-  @PostMapping("/")
+  @PostMapping("/login")
   public String loginUser(@RequestParam String username, @RequestParam String password) {
     User user = userService.loginUser(username, password);
     if (user != null) {
       return "redirect:/portal";  
     } else {
-      return "redirect:/";  
+      return "login";  
     }
   }
 }
