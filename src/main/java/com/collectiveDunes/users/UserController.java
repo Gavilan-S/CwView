@@ -47,13 +47,13 @@ public class UserController {
     if (user == null) {
       response.put("status", "error");
       response.put("message", "Username does not exist");
-      return new ModelAndView("redirect:/login", response);
+      return new ModelAndView("redirect:/", response);
     }
 
     if (!user.getPassword().equals(password)) {
       response.put("status", "error");
       response.put("message", "Invalid password");
-      return new ModelAndView("redirect:/login", response);
+      return new ModelAndView("redirect:/", response);
     }
 
     response.put("status", "success");

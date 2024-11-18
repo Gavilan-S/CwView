@@ -46,7 +46,7 @@ public class AuthController {
         if (user != null) {
             return "redirect:/portal";  
         } else {
-            return "login";  
+            return "redirect:/";  
         }
     }
 }
