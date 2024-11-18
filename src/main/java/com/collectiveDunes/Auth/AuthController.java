@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.collectiveDunes.user.User;
 import com.collectiveDunes.user.UserService;
 
-
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
@@ -21,12 +20,12 @@ public class AuthController {
 
   @GetMapping("/register")
   public String showRegisterPage() {
-    return "register";
+    return "redirect:/register";
   }
 
-  @GetMapping("/login")
+  @GetMapping("/")
   public String showLoginPage() {
-    return "login";
+    return "redirect:/";
   }
 
   @PostMapping("/register")
@@ -35,17 +34,17 @@ public class AuthController {
     if (isRegistered) {
       return "redirect:/portal";  
     } else {
-      return "register";  
+      return "redirect:/register";  
     }
   }
 
-  @PostMapping("/login")
+  @PostMapping("/")
   public String loginUser(@RequestParam String username, @RequestParam String password) {
     User user = userService.loginUser(username, password);
     if (user != null) {
       return "redirect:/portal";  
     } else {
-      return "login";  
+      return "redirect:/";  
     }
   }
 }

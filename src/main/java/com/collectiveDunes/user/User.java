@@ -18,15 +18,15 @@ public class User {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
-  private String name;
+  private String username;
   private String password;
 
-  public User(String name, String password) {
-    this.name = name;
+  public User(String username, String password) {
+    this.username = username;
     this.password = password;
   }
 
   public Long getId() { return id; }
-  public String getName(){ return name; }
+  public String getName(){ return username; }
   public String getPassword(){ return password; }
 }

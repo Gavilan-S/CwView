@@ -61,7 +61,7 @@ public class UserControllerTest {
 
         ModelAndView result = userController.loginUser(username, password);
 
-        assertEquals("redirect:/login", result.getViewName());
+        assertEquals("redirect:/", result.getViewName());
         assertEquals("error", result.getModel().get("status"));
         assertEquals("Username does not exist", result.getModel().get("message"));
     }
@@ -75,7 +75,7 @@ public class UserControllerTest {
 
         ModelAndView result = userController.loginUser(username, password);
 
-        assertEquals("redirect:/login", result.getViewName());
+        assertEquals("redirect:/", result.getViewName());
         assertEquals("error", result.getModel().get("status"));
         assertEquals("Invalid password", result.getModel().get("message"));
     }

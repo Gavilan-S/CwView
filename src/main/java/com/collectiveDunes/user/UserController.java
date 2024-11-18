@@ -14,13 +14,13 @@ import org.springframework.web.servlet.ModelAndView;
 import jakarta.annotation.PostConstruct;
 
 @Controller
-@RequestMapping("/users")
+@RequestMapping("/")
 public class UserController {
 
   @Autowired
   private UsersRepository userRepository;
 
-  @PostMapping("/insert")
+  @PostMapping("register")
   public ModelAndView addUser(@RequestParam String username, @RequestParam String password) {
     Map<String, String> response = new HashMap<>();
 
@@ -44,7 +44,7 @@ public class UserController {
     addUser(userTest.getName(), userTest.getPassword());
   }
 
-  @PostMapping("/login")
+  @PostMapping("")
   public ModelAndView loginUser(@RequestParam String username, @RequestParam String password) {
     Map<String, String> response = new HashMap<>();
     User user = userRepository.findByUsername(username);
@@ -52,13 +52,13 @@ public class UserController {
     if (user == null) {
       response.put("status", "error");
       response.put("message", "Username does not exist");
-      return new ModelAndView("redirect:/login", response);
+      return new ModelAndView("redirect:/", response);
     }
 
     if (!user.getPassword().equals(password)) {
       response.put("status", "error");
       response.put("message", "Invalid password");
-      return new ModelAndView("redirect:/login", response);
+      return new ModelAndView("redirect:/", response);
     }
 
     response.put("status", "success");

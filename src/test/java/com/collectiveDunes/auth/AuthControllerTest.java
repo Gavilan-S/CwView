@@ -28,13 +28,13 @@ public class AuthControllerTest {
     @Test
     public void testShowRegisterPage() {
         String result = authController.showRegisterPage();
-        assertEquals("register", result);
+        assertEquals("redirect:/register", result);
     }
 
     @Test
     public void testShowLoginPage() {
         String result = authController.showLoginPage();
-        assertEquals("login", result);
+        assertEquals("redirect:/", result);
     }
 
     @Test
@@ -54,7 +54,7 @@ public class AuthControllerTest {
         when(userService.registerUser(user)).thenReturn(false);
 
         String result = authController.registerUser(user);
-        assertEquals("register", result);
+        assertEquals("redirect:/register", result);
 
         verify(userService).registerUser(user);
     }
@@ -75,7 +75,7 @@ public class AuthControllerTest {
         when(userService.loginUser("invalidUser", "wrongPassword")).thenReturn(null);
 
         String result = authController.loginUser("invalidUser", "wrongPassword");
-        assertEquals("login", result);
+        assertEquals("redirect:/", result);
 
         verify(userService).loginUser("invalidUser", "wrongPassword");
     }
