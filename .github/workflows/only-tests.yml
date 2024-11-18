@@ -45,10 +45,7 @@ jobs:
           node-version: '22'
     
       - name: Install dependencies
-        run: npm install -D @babel/core @babel/preset-env babel-jest identity-obj-proxy jest-environment-jsdom jest sockjs-client
-
-      - name: Set executable permission for jest
-        run: chmod +x ./node_modules/.bin/jest
+        run: npm install jest
 
       - name: Run tests
         run: npm test
