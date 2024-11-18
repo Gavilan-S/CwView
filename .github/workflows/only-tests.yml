@@ -45,10 +45,11 @@ jobs:
           node-version: '22'
     
       - name: Install dependencies
-        run: npm install
+        run: |
+          npm ci
+          npx jest --version
 
-      - name: Give Jest executable permissions
-        run: chmod +x ./node_modules/.bin/jest
-        
-      - name: Run tests
-        run: npx jest
+      - name: Run Jest tests
+        run: |
+          chmod +x ./node_modules/.bin/jest
+          npx jest
