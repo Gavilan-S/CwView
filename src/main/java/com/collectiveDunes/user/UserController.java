@@ -14,13 +14,13 @@ import org.springframework.web.servlet.ModelAndView;
 import jakarta.annotation.PostConstruct;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/users")
 public class UserController {
 
   @Autowired
   private UsersRepository userRepository;
 
-  @PostMapping("register")
+  @PostMapping("insert")
   public ModelAndView addUser(@RequestParam String username, @RequestParam String password) {
     Map<String, String> response = new HashMap<>();
 
@@ -44,7 +44,7 @@ public class UserController {
     addUser(userTest.getName(), userTest.getPassword());
   }
 
-  @PostMapping("")
+  @PostMapping("/login")
   public ModelAndView loginUser(@RequestParam String username, @RequestParam String password) {
     Map<String, String> response = new HashMap<>();
     User user = userRepository.findByUsername(username);
